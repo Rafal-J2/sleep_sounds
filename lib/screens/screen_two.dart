@@ -3,10 +3,10 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:sleep_sounds/fun/foregroundService.dart';
+import 'package:sleep_sounds/fun/arrays_3_4.dart';
+import 'package:sleep_sounds/fun/foreground_service.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:sleep_sounds/fun/arrays_3_4.dart';
 import 'package:sleep_sounds/models/data_provider.dart';
 
 class CheckoutPage extends StatefulWidget {
@@ -30,17 +30,17 @@ class _CheckoutPageState extends State<CheckoutPage>
       case 0 :
       //  arrays4[0].checkThemeMode = ThemeMode.light;
         themeMode = ThemeMode.light;
-        print('switchThemeMode - ThemeMode.light*');
+        debugPrint('switchThemeMode - ThemeMode.light*');
         break;
       case 1 :
       //   arrays4[0].checkThemeMode = ThemeMode.dark;
         themeMode = ThemeMode.dark;
-        print('ThemeMode.dark*');
+        debugPrint('ThemeMode.dark*');
         break;
       case 2 :
       //  arrays4[0].checkThemeMode = ThemeMode.system;
         themeMode = ThemeMode.system;
-        print('ThemeMode.system*');
+        debugPrint('ThemeMode.system*');
     }
   }
 
@@ -57,7 +57,7 @@ class _CheckoutPageState extends State<CheckoutPage>
           theme: FlexColorScheme.light(
             scheme: FlexScheme.red,
             onSecondary: Colors.white,
-            scaffoldBackground: Color(0xFF20124d),
+            scaffoldBackground: const Color(0xFF20124d),
           ).toTheme,
           darkTheme: FlexColorScheme.dark(
             scheme: FlexScheme.red,
@@ -65,11 +65,11 @@ class _CheckoutPageState extends State<CheckoutPage>
           themeMode: cart.basketItems3.isEmpty ? themeMode : arrays4[0].checkThemeMode,
           home: Scaffold(
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(40.0),
+              preferredSize: const Size.fromHeight(40.0),
               child: AppBar(
                 systemOverlayStyle:
-                    SystemUiOverlayStyle(statusBarColor: Colors.black),
-                title: Text('Active sounds'),
+                    const SystemUiOverlayStyle(statusBarColor: Colors.black),
+                title: const Text('Active sounds'),
               ),
             ),
             body: ListView(
@@ -86,7 +86,7 @@ class _CheckoutPageState extends State<CheckoutPage>
                       : null,
                 ),
                 Center(child: cart.count <= 0 ? Lottie.asset('assets/lottieFiles/relax.json') : null),
-                Container(
+                SizedBox(
                   // width: 50.0,
                   height: screenSize.height,
                   //   color: Colors.black12,
@@ -128,7 +128,7 @@ class _CheckoutPageState extends State<CheckoutPage>
                                                 });
                                           }),
                                       IconButton(
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.delete_forever,
                                           color: Colors.white,
                                         ),

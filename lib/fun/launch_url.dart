@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
   launchURL() async {
@@ -49,11 +50,11 @@ import 'package:url_launcher/url_launcher.dart';
     String url = 'A';
     switch(url) {
       case 'A':
-        print('test');
+        debugPrint('test');
         break;
 
       case 'B' :
-        print('test2');
+        debugPrint('test2');
 
     }
   }

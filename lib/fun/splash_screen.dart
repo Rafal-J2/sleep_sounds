@@ -12,9 +12,10 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
   void initState() {
    super.initState();
-    Timer(Duration(seconds: 3), (){
+    Timer(const Duration(seconds: 3), (){
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Navigators()));
     });
   }
@@ -23,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Lottie.asset('assets/lottieFiles/night.json',
+      body: Lottie.asset('assets/lottieFiles/night_splash.json',
         width: double.infinity,
         fit: BoxFit.fitWidth,),
     );

@@ -1,4 +1,3 @@
-
 //import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
@@ -54,9 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
     _switchThemeMode();
     _selectedPageIndex = 0;
     _pages = [
-      GoodDream(),
+      const GoodDream(),
       CheckoutPage(),
-      Menu(),
+      const Menu(),
       Mix(),
     ];
     /// Save state all screens
@@ -67,15 +66,15 @@ class _MyHomePageState extends State<MyHomePage> {
     switch(dataStorage.read('intCheck')){
       case 0 :
         themeMode = ThemeMode.light;
-        print('switchThemeMode - ThemeMode.light*');
+        debugPrint('switchThemeMode - ThemeMode.light*');
         break;
       case 1 :
         themeMode = ThemeMode.dark;
-        print('ThemeMode.dark*');
+        debugPrint('ThemeMode.dark*');
         break;
       case 2 :
         themeMode = ThemeMode.system;
-        print('ThemeMode.system*');
+        debugPrint('ThemeMode.system*');
     }
   }
 
@@ -105,9 +104,9 @@ class _MyHomePageState extends State<MyHomePage> {
         theme: FlexColorScheme.light(
                 scheme: FlexScheme.red,
                 //   onSecondary: Colors.white,
-                scaffoldBackground: Color(0xFF20124d),
+                scaffoldBackground: const Color(0xFF20124d),
                 /// Colors Navigation Bar
-                background: Color(0xFF20124d))
+                background: const Color(0xFF20124d))
             .toTheme,
         darkTheme: FlexColorScheme.dark(
           scheme: FlexScheme.red,
@@ -121,22 +120,22 @@ class _MyHomePageState extends State<MyHomePage> {
         home: Scaffold(
           body: PageView(
             controller: _pageController,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             children: _pages,
           ),
           bottomNavigationBar: BottomNavigationBar(
             unselectedItemColor: Colors.white,
             selectedItemColor: Colors.red,
-            selectedIconTheme: IconThemeData(color: Colors.red),
+            selectedIconTheme: const IconThemeData(color: Colors.red),
             //   backgroundColor: Color(0xFF20124d),
             items: [
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: 'Mix Sounds ',
               ),
               BottomNavigationBarItem(
                icon: cart.count <= 0
-                    ? Icon(Icons.surround_sound)
+                    ? const Icon(Icons.surround_sound)
                     : Lottie.asset('assets/lottieFiles/sounds_waves.json'),
                 label: 'Active Sounds - ${cart.count.toString()}',
                 /*
@@ -145,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ? null
                         : Colors.white),*/
               ),
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                 icon: Icon(Icons.menu),
                 label: 'Settings',
               ),

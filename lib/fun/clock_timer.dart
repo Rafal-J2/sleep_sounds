@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:sleep_sounds/fun/toast.dart';
+import 'package:sleep_sounds/models/data_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sleep_sounds/models/data_provider.dart';
 
 
 void main() async {
@@ -85,6 +85,29 @@ class _State extends State<ClockTimer> {
  // int _setTime = 0;
 
 
+ // TODO;
+/*  void switchThemeMode(){
+    switch(_setTime){
+      case 5 :
+        _resetRemainingTime5();
+        _startTimer();
+        toast3();
+        log('setClock(5)');
+        break;
+      case 10 :
+        setClock();
+        _resetRemainingTime10();
+        _startTimer();
+        toast3();
+        log('setClock(10)');
+        break;
+      case 15 :
+        setClock();
+        _resetRemainingTime15();
+        _startTimer();
+        toast3();
+        log('setClock(15)');
+    }}*/
 
   resetRemainingTime5() {
     _isFav = true;
@@ -198,6 +221,7 @@ class _State extends State<ClockTimer> {
     });
   }
 
+ 
   _tick() {
     setState(() {
       _seconds -= 1;
@@ -348,7 +372,7 @@ class _State extends State<ClockTimer> {
                     _startTimer();
                     toast3();
                   },
-                  child: Text('2 HOURS'),
+                  child: const Text('2 HOURS'),
                 ),
               ),
 

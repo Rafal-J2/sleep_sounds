@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_sounds/models/view_models.dart';
-
 import 'dialogs.dart';
 import 'launch_url.dart';
 
