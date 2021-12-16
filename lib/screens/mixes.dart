@@ -3,7 +3,7 @@ import 'package:sleep_sounds/fun/arrays_1_2.dart';
 import 'package:sleep_sounds/fun/arrays_3_4.dart';
 import 'package:sleep_sounds/models/data_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:sleep_sounds/fun/onlyMix.dart';
+import 'package:sleep_sounds/fun/only_mix.dart';
 
 class Mix extends StatelessWidget {
   @override
@@ -66,7 +66,7 @@ class Mix extends StatelessWidget {
                 ),
 
                 Text(arrays4[index].title!,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white
                 ),
                 ),

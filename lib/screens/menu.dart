@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sleep_sounds/fun/arrays_3_4.dart';
-import 'package:sleep_sounds/fun/modeSwitch.dart';
-import 'package:provider/provider.dart';
-import 'package:sleep_sounds/fun/showDialogs.dart';
+import 'package:sleep_sounds/fun/mode_switch.dart';
 import 'package:sleep_sounds/models/data_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:sleep_sounds/fun/show_dialogs.dart';
 
 /*class Controller extends GetxController {
   final dataStorage = GetStorage();
@@ -30,56 +30,51 @@ class _MenuState extends State<Menu> with AutomaticKeepAliveClientMixin {
 
   final dataStorage = GetStorage();
 
-
+  @override
   void initState() {
     super.initState();
- //   dataStorage.read('intCheck');
-    intCheck = 0;
-    log("intCheck***$intCheck");
-    switchThemeMode();
- //   arrays4[0].checkThemeMode = ThemeMode.light;
-  //   dataStorage.read('key');
- //    dataStorage.read('key2');
-   /* if(dataCount.read('key') != null) {
-       dataCount.read('key');
-    }*/
- //   log("initState controller ${dataStorage.read('key')}");
-  //  log("initState themeMode ${themeMode = controller.dataStorage.read('key')}");
+    dataStorage.read('intCheck');
+    log("what is inCheck in initState: $intCheck");
+   // dataStorage.read('intCheck');
+    log("dataStorage.read: ${dataStorage.read('intCheck')}");
+    _switchThemeMode();
+   // checkStorage();
+
   }
 
-   checkStorage() {
+  void _switchThemeMode(){
+    switch(dataStorage.read('intCheck')){
+      case 0 :
+      //  arrays4[0].checkThemeMode = ThemeMode.light;
+        themeMode = ThemeMode.light;
+        debugPrint('switchThemeMode - ThemeMode.light*');
+        break;
+      case 1 :
+     //   arrays4[0].checkThemeMode = ThemeMode.dark;
+      themeMode = ThemeMode.dark;
+        debugPrint('ThemeMode.dark*');
+        break;
+      case 2 :
+      //  arrays4[0].checkThemeMode = ThemeMode.system;
+       themeMode = ThemeMode.system;
+        debugPrint('ThemeMode.system*');
+    }
+  }
+
+   _checkStorage() {
   if(themeMode == ThemeMode.light) {
     intCheck = 0;
   } else if (themeMode == ThemeMode.dark){
     intCheck = 1;
   } else {intCheck = 2;}
-    log("intCheck $intCheck");
- // log("themeMode2 $themeMode2");
-//  dataStorage.write('intCheck', intCheck);
+  dataStorage.write('intCheck', intCheck);
+  log("dataStorage.write ${dataStorage.write('intCheck', intCheck)}");
 }
 
-  void switchThemeMode(){
-    switch(intCheck){
-      case 0 :
-        themeMode = ThemeMode.light;
-        print('ThemeMode.light*');
-        break;
-      case 1 :
-        themeMode = ThemeMode.dark;
-        print('ThemeMode.dark*');
-        break;
-      case 2 :
-        themeMode = ThemeMode.system;
-        print('ThemeMode.system*');
-    }
-
-  }
-
-  late int intCheck;
-
+    int intCheck = 2;
   late ThemeMode themeMode;
+// ThemeMode themeMode = ThemeMode.system;
 
- //  ThemeMode themeMode = arrays4[0].themeMode ?? ThemeMode.system;
   @override
   Widget build(BuildContext context) {
 //    final controller = Get.put(Controller());
@@ -98,24 +93,18 @@ class _MenuState extends State<Menu> with AutomaticKeepAliveClientMixin {
           Column(
             children: [
               ListTile(
-                  title: Text("${dataStorage.read('intCheck')}",
-                    style: TextStyle(color: Colors.white) ,
-                  )
-              ),
-
-              ListTile(
-                title: Text('Privacy Policy',
+                title: const Text('Privacy Policy',
                     style: TextStyle(color: Colors.white)),
                 onTap: () {
                   showDialog(
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: Text('Privacy Policy'),
+                          title: const Text('Privacy Policy'),
                           content: setupAlertDialogContainer(),
                           actions: <Widget>[
                             TextButton(
-                              child: Text('Approve'),
+                              child: const Text('Approve'),
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
@@ -126,7 +115,7 @@ class _MenuState extends State<Menu> with AutomaticKeepAliveClientMixin {
                 },
               ),
               ListTile(
-                title: Text(
+                title: const Text(
                   'Acknowledgments',
                   style: TextStyle(color: Colors.white),
                 ),
@@ -135,11 +124,11 @@ class _MenuState extends State<Menu> with AutomaticKeepAliveClientMixin {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: Text('Acknowledgments'),
+                          title: const Text('Acknowledgments'),
                           content: showMyDialog3(),
                           actions: <Widget>[
                             TextButton(
-                              child: Text('Approve'),
+                              child: const Text('Approve'),
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
@@ -150,7 +139,7 @@ class _MenuState extends State<Menu> with AutomaticKeepAliveClientMixin {
                 },
               ),
               ListTile(
-                title: Text(
+                title: const Text(
                   'Exit the application',
                   style: TextStyle(color: Colors.white),
                 ),
@@ -158,44 +147,57 @@ class _MenuState extends State<Menu> with AutomaticKeepAliveClientMixin {
                   SystemChannels.platform.invokeMethod('SystemNavigator.pop');
                 },
               ),
-              Container(
-                height: 200,
-                child: HomePage(
-                  // We pass it the current theme mode.
+              Column(
+                children: [
+                  SizedBox(
+                    height: 200,
+                    child: HomePage(
+                      // We pass it the current theme mode.
              //    themeMode: themeMode,
-                   themeMode:  themeMode,
-                  // On the home page we can toggle theme mode between light and dark.
-                  onThemeModeChanged: (ThemeMode mode) {
-                    setState(() {
-                     themeMode = mode;
-                     checkStorage();
-                     switchThemeMode();
-                      dataStorage.write('intCheck', intCheck);
-              /*      if(themeMode == ThemeMode.light) {
-                       intCheck = 0;
-                     } else if (themeMode == ThemeMode.dark){
-                       intCheck = 1;
-                     } else {intCheck = 2;}
-                      log("intCheck $intCheck");
-                     log("themeMode $themeMode");*/
-                  //   dataStorage.write('key', mode);
-              //       dataStorage.write('key2', _counter);
-                  //  arrays4[0].themeMode = mode;
-                    arrays4[0].checkThemeMode = themeMode;
-                      cart.add3(arrays4[0]);
-                //  log("arrys[0] ${arrays4[0]}");
-                    });
-                  },
-                  flexSchemeData: FlexColor.schemes[FlexScheme.red],
-                ),
+                      /// The selected icon
+                      // themeMode: arrays4[0].checkThemeMode,
+                       themeMode:  themeMode,
+                      // On the home page we can toggle theme mode between light and dark.
+                      onThemeModeChanged: (ThemeMode mode) {
+                        setState(() {
+                         themeMode = mode;
+                         _checkStorage();
+                    //    switchThemeMode();
+                      //    dataStorage.write('intCheck', intCheck);
+                  /*      if(themeMode == ThemeMode.light) {
+                           intCheck = 0;
+                         } else if (themeMode == ThemeMode.dark){
+                           intCheck = 1;
+                         } else {intCheck = 2;}
+                          log("intCheck $intCheck");
+                         log("themeMode $themeMode");*/
+                      //   dataStorage.write('key', mode);
+                  //       dataStorage.write('key2', _counter);
+                     //   arrays4[0].themeMode = mode;
+                          arrays4[0].checkThemeMode = mode;
+                          cart.add3(arrays4[0]);
+                        });
+
+                        log("acart.add3(arrays4[0]");
+                      },
+                      flexSchemeData: FlexColor.schemes[FlexScheme.red],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
         ],
       );
     });
+
   }
 
   @override
   bool get wantKeepAlive => true;
+
+
 }
+
+
+

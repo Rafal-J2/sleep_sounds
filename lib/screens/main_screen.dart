@@ -11,17 +11,17 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
-import 'TabView/tab_view_four.dart';
-import 'TabView/tab_view_one.dart';
-import 'TabView/tab_view_two.dart';
-import 'TabView/tab_view_three.dart';
+import 'TabView/tab_view4.dart';
+import 'TabView/tab_view1.dart';
+import 'TabView/tab_view2.dart';
+import 'TabView/tab_view3.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 
 void main() async {
   runApp(ChangeNotifierProvider(
     create: (context) => DataProvider(),
-    child: GoodDream(),
+    child: const GoodDream(),
   ));
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   await Firebase.initializeApp();
@@ -29,7 +29,7 @@ void main() async {
 
 class GoodDream extends StatefulWidget {
   //Functions to Show Dialog
-  GoodDream({
+  const GoodDream({
     Key? key,
     this.confirmWidget,
     this.cancelWidget,
@@ -89,15 +89,15 @@ class _State extends State<GoodDream>   {
     switch(dataStorage.read('intCheck')){
       case 0 :
         themeMode = ThemeMode.light;
-        print('switchThemeMode - ThemeMode.light*');
+        debugPrint('switchThemeMode - ThemeMode.light*');
         break;
       case 1 :
         themeMode = ThemeMode.dark;
-        print('ThemeMode.dark*');
+        debugPrint('ThemeMode.dark*');
         break;
       case 2 :
         themeMode = ThemeMode.system;
-        print('ThemeMode.system*');
+        debugPrint('ThemeMode.system*');
     }
   }
 
@@ -105,7 +105,7 @@ class _State extends State<GoodDream>   {
 
   void startServiceInPlatform() async {
     if (Platform.isAndroid) {
-      var methodChannel = MethodChannel("com.retroportalstudio.messages");
+      var methodChannel = const MethodChannel("com.retroportalstudio.messages");
       String? data = await methodChannel.invokeMethod("startService");
       debugPrint(data);
     }
@@ -129,7 +129,7 @@ class _State extends State<GoodDream>   {
         theme: FlexColorScheme
             .light(scheme: FlexScheme.red,
             onSecondary: Colors.white,
-            scaffoldBackground: Color(0xFF20124d)
+            scaffoldBackground: const Color(0xFF20124d)
         )
             .toTheme,
         darkTheme: FlexColorScheme
@@ -137,9 +137,7 @@ class _State extends State<GoodDream>   {
           onPrimary: Colors.white,
         )
             .toTheme,
-    //   themeMode: arrays4[0].checkThemeMode,
         themeMode: cart.basketItems3.isEmpty ? themeMode : arrays4[0].checkThemeMode,
-     //  themeMode: cart.basketItems3.isEmpty ? ThemeMode.system : cart.basketItems3[0].checkThemeMode,
 
         home: DefaultTabController(
           length: 4,
@@ -150,8 +148,8 @@ class _State extends State<GoodDream>   {
                 preferredSize: Size.fromHeight(40.0),
                 child: AppBar(
                   backwardsCompatibility: false,
-                  systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.black),
-                  flexibleSpace: SizedBox(
+                  systemOverlayStyle: const SystemUiOverlayStyle(statusBarColor: Colors.black),
+                  flexibleSpace: const SizedBox(
                     child: TabBar(
                       isScrollable: true,
                       physics: ClampingScrollPhysics (),
@@ -175,7 +173,7 @@ class _State extends State<GoodDream>   {
                 ),
               ),
               body: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                 ),
                 child: Column(
                   children: [
@@ -184,36 +182,36 @@ class _State extends State<GoodDream>   {
                         children: <Widget>[
                           ListView(
                             children: <Widget>[
-                              Container(
+                              SizedBox(
                                 height: screenSize.height / 1.6,
-                                child: TabViewOne(
+                                child: const TabViewOne(
                                 ),
                               ),
                             ],
                           ),
                           ListView(
                             children: <Widget>[
-                              Container(
+                              SizedBox(
                                 // width: 50.0,
                                 height: screenSize.height / 1.6,
                                 //  color: Colors.black12,
-                                child: TabViewTwo(),
+                                child: const TabViewTwo(),
                               ),
                             ],
                           ),
                           ListView(
                             children: <Widget>[
-                              Container(
+                              SizedBox(
                                 height: screenSize.height / 1.6,
-                                child: TabViewThree(),
+                                child: const TabViewThree(),
                               ),
                             ],
                           ),
                           ListView(
                             children: <Widget>[
-                              Container(
+                              SizedBox(
                                 height: screenSize.height / 1.6,
-                                child: TabViewFour(),
+                                child: const TabViewFour(),
                               ),
                             ],
                           ),
@@ -221,7 +219,7 @@ class _State extends State<GoodDream>   {
                       ),
                     ),
                   //  _checkStorage(),
-                    ClockTimer(),
+                    const ClockTimer(),
                   ],
                 ),
               ),
@@ -237,17 +235,17 @@ class _State extends State<GoodDream>   {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Are you sure?'),
-          content: Text('Do you want to exit an App'),
+          title: const Text('Are you sure?'),
+          content: const Text('Do you want to exit an App'),
           actions: <Widget>[
             TextButton(
-              child: Text('No'),
+              child: const Text('No'),
               onPressed: () {
                 Navigator.of(context).pop(false);
               },
             ),
             TextButton(
-              child: Text('Yes'),
+              child: const Text('Yes'),
               onPressed: () {
                 Navigator.of(context).pop(true);
               },
