@@ -1,4 +1,4 @@
-//import 'package:admob_flutter/admob_flutter.dart';
+
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -15,6 +15,8 @@ import 'menu.dart';
 
 
 class Navigators extends StatefulWidget {
+  const Navigators({Key? key}) : super(key: key);
+
   @override
   _NavigatorsState createState() => _NavigatorsState();
 }
@@ -54,9 +56,9 @@ class _MyHomePageState extends State<MyHomePage> {
     _selectedPageIndex = 0;
     _pages = [
       const GoodDream(),
-      CheckoutPage(),
+      const CheckoutPage(),
       const Menu(),
-      Mix(),
+      const Mix(),
     ];
     /// Save state all screens
     _pageController = PageController(initialPage: _selectedPageIndex);

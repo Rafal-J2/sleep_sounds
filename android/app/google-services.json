@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1013856704776",
+    "project_id": "sleep-sounds-c18d5",
+    "storage_bucket": "sleep-sounds-c18d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013856704776:android:5605aa7ec27d041632b4bd",
+        "android_client_info": {
+          "package_name": "com.example.sleep_sounds"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013856704776-n8ljvgbvkjo2l4l06grtodmoongsnrgv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsEfUEazM6MfwZQeSyvQQtguZhP4FdcOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013856704776-n8ljvgbvkjo2l4l06grtodmoongsnrgv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

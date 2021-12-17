@@ -10,6 +10,8 @@ import 'package:provider/provider.dart';
 import 'package:sleep_sounds/models/data_provider.dart';
 
 class CheckoutPage extends StatefulWidget {
+  const CheckoutPage({Key? key}) : super(key: key);
+
   @override
   _CheckoutPageState createState() => _CheckoutPageState();
 }

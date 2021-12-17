@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:sleep_sounds/fun/only_mix.dart';
 
 class Mix extends StatelessWidget {
+  const Mix({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Consumer<DataProvider>(builder: (

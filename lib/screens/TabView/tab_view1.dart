@@ -18,7 +18,7 @@ class TabViewOne extends StatefulWidget {
 //  final FirebaseAnalyticsObserver observer;
 
   @override
-  _State createState() => _State(analytics);
+  _State createState() => _State();
 
 }
 
@@ -27,7 +27,7 @@ class _State extends State<TabViewOne> with AutomaticKeepAliveClientMixin {
   // Firebase Analytics
   late FirebaseAnalytics _analytics;
 
-  _State(FirebaseAnalytics? analytics);
+ // _State(FirebaseAnalytics? analytics);
 
   @override
   void initState() {

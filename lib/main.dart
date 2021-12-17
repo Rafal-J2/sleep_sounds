@@ -11,15 +11,18 @@ import 'fun/splash_screen.dart';
 void main() async {
   await GetStorage.init();
 // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 
 class MyApp extends StatelessWidget {
+const MyApp({Key? key}) : super(key: key);
 // Firebase
   static FirebaseAnalytics analytics = FirebaseAnalytics();
   static FirebaseAnalyticsObserver observer =
       FirebaseAnalyticsObserver(analytics: analytics);
+
+ 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(

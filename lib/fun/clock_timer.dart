@@ -1,3 +1,5 @@
+// ignore_for_file: no_logic_in_create_state
+
 import 'dart:async';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -80,7 +82,7 @@ class _State extends State<ClockTimer> {
   bool counting = false;
   int _minutes = 0;
   int _seconds = 0;
-  int _hours = 0;
+  final int _hours = 0;
   bool  _isFav = false;
  // int _setTime = 0;
 
