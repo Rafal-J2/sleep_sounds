@@ -21,14 +21,13 @@ class TabViewTwo extends StatefulWidget {
 //  final FirebaseAnalyticsObserver observer;
 
   @override
-  _State createState() => _State(analytics);
+  _State createState() => _State();
 }
 
 class _State extends State<TabViewTwo> {
   // Firebase Analytics
   late FirebaseAnalytics _analytics;
 
-  _State(FirebaseAnalytics? analytics);
 
   @override
   void initState() {
@@ -89,52 +88,7 @@ class _State extends State<TabViewTwo> {
                     foregroundServiceStop();
                   }
                 },
-                child: Column(
-                  children: [
-                    Image(
-                      height: 50,
-                      width: 120,
-                      //  height: 50.0,
-                      image: AssetImage(arrays2[index].isFav!
-                          ? arrays2[index].picOn!
-                          : arrays2[index].picOff!),
-                    ),
-                    const Padding(padding: EdgeInsets.only(top: 8)),
-                    arrays2[index].isFav!
-                        ? AnimatedOpacity(
-                      duration: const Duration(milliseconds: 800),
-                      opacity: arrays2[index].isFav!
-                          ? arrays2[index].opacityOn
-                          : arrays2[index].opacityOff,
-                      child: PlayerBuilder.volume(
-                          player: arrays2[index].player,
-                          builder: (context, volume) {
-                            return Shimmer.fromColors(
-                              baseColor: Colors.white,
-                              highlightColor: Colors.grey,
-                              child: Slider(
-                                  value: volume,
-                                  min: 0,
-                                  max: 1,
-                                  divisions: 50,
-                                  onChanged: (v) {
-                                    setState(() {
-                                      arrays2[index].player.setVolume(v);
-                                    });
-                                  }),
-                            );
-                          }),
-                    )
-                        : Text(
-                      arrays2[index].title!,
-                      style: const TextStyle(
-                          fontSize: 13.0,
-                          //   height: 2.5,
-                          color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
+                child: _gridBuldier(index),
               ),
             ],
           );
@@ -142,4 +96,52 @@ class _State extends State<TabViewTwo> {
       );
     });
   }
-}
+
+  Widget _gridBuldier(int index) => Column(
+                children: [
+                  Image(
+                    height: 50,
+                    width: 120,
+                    //  height: 50.0,
+                    image: AssetImage(arrays2[index].isFav!
+                        ? arrays2[index].picOn!
+                        : arrays2[index].picOff!),
+                  ),
+                  const Padding(padding: EdgeInsets.only(top: 8)),
+                  arrays2[index].isFav!
+                      ? AnimatedOpacity(
+                    duration: const Duration(milliseconds: 800),
+                    opacity: arrays2[index].isFav!
+                        ? arrays2[index].opacityOn
+                        : arrays2[index].opacityOff,
+                    child: PlayerBuilder.volume(
+                        player: arrays2[index].player,
+                        builder: (context, volume) {
+                          return Shimmer.fromColors(
+                            baseColor: Colors.white,
+                            highlightColor: Colors.grey,
+                            child: Slider(
+                                value: volume,
+                                min: 0,
+                                max: 1,
+                                divisions: 50,
+                                onChanged: (v) {
+                                  setState(() {
+                                    arrays2[index].player.setVolume(v);
+                                  });
+                                }),
+                          );
+                        }),
+                  )
+                      : Text(
+                    arrays2[index].title!,
+                    style: const TextStyle(
+                        fontSize: 13.0,
+                        //   height: 2.5,
+                        color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              );
+  }
+  

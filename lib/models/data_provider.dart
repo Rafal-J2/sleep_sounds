@@ -1,4 +1,5 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,13 @@ class DataProvider extends ChangeNotifier {
   Map<int, int> get cart => _cart;
 
   final List<ViewModels> _items = [];
+
+  late final FirebaseAnalytics? analytics;
+  late FirebaseAnalytics _analytics;
+
   void add(ViewModels item) {
     _items.add(item);
-  
+
     notifyListeners();
   }
 
@@ -23,12 +28,8 @@ class DataProvider extends ChangeNotifier {
     if (count <= 5) {
       //Bool checking
       arrays[index].isFav = !arrays[index].isFav!;
-      // Click_events - if isFav is true
-      // if (arrays[index].isFav!) {
-      //   await _analytics.logEvent(
-      //     name: arrays[index].events!,
-      //   );
-      // }
+ 
+  
       // Play or Stop sounds
       arrays[index].isFav!
           ? arrays[index].player.open(

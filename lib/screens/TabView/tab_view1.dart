@@ -19,7 +19,6 @@ class TabViewOne extends StatefulWidget {
 
   @override
   _State createState() => _State();
-
 }
 
 class _State extends State<TabViewOne> with AutomaticKeepAliveClientMixin {
@@ -27,7 +26,7 @@ class _State extends State<TabViewOne> with AutomaticKeepAliveClientMixin {
   // Firebase Analytics
   late FirebaseAnalytics _analytics;
 
- // _State(FirebaseAnalytics? analytics);
+  // _State(FirebaseAnalytics? analytics);
 
   @override
   void initState() {
@@ -37,7 +36,6 @@ class _State extends State<TabViewOne> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
-   // var cart = Provider.of<DataProvider>(context);
     super.build(context);
     return Consumer<DataProvider>(builder: (
       context,
@@ -56,8 +54,9 @@ class _State extends State<TabViewOne> with AutomaticKeepAliveClientMixin {
                 ///  padding: EdgeInsets.only(top: 10),
                 onPressed: () async {
                   cart.addAll(index);
+                  firebaseAnalytics(index);
                 },
-                child: gridBuldier(index),
+                child: _gridBuldier(index),
               ),
             ],
           );
@@ -65,53 +64,65 @@ class _State extends State<TabViewOne> with AutomaticKeepAliveClientMixin {
       );
     });
   }
-    Widget gridBuldier(int index) => Column(
-          children: [
-            Image(
-              fit: BoxFit.contain,
-              height: 50,
-              width: 120,
-              image: AssetImage(arrays[index].isFav!
-                  ? arrays[index].picOn!
-                  : arrays[index].picOff!),
-            ),
-            const Padding(padding: EdgeInsets.only(top: 8)),
-            arrays[index].isFav!
-                ? AnimatedOpacity(
-                    opacity: arrays[index].isFav!
-                        ? arrays[index].opacityOn
-                        : arrays[index].opacityOff,
-                    duration: const Duration(milliseconds: 800),
-                    child: PlayerBuilder.volume(
-                        player: arrays[index].player,
-                        builder: (context, volume) {
-                          return Shimmer.fromColors(
-                            baseColor: Colors.white,
-                            highlightColor: Colors.grey,
-                            child: Slider(
-                                value: volume,
-                                min: 0,
-                                max: 1,
-                                divisions: 50,
-                                onChanged: (v) {
-                                  setState(() {
-                                    arrays[index].player.setVolume(v);
-                                  });
-                                }),
-                          );
-                        }),
-                  )
-                : Text(
-                    arrays[index].title!,
-                    style: const TextStyle(
-                        fontSize: 12.0,
-                        //    height: 2.5,
-                        color: Colors.white),
-                    textAlign: TextAlign.center,
-                  ),
-          ],
-        );
 
+  Future<void> firebaseAnalytics(int index) async {
+    try {
+      if (arrays[index].isFav!) {
+        await _analytics.logEvent(
+          name: arrays[index].events!,
+        );
+      }
+    } catch (e) {
+      debugPrint("********error catch***********");
+    }
+  }
+
+  Widget _gridBuldier(int index) => Column(
+        children: [
+          Image(
+            fit: BoxFit.contain,
+            height: 50,
+            width: 120,
+            image: AssetImage(arrays[index].isFav!
+                ? arrays[index].picOn!
+                : arrays[index].picOff!),
+          ),
+          const Padding(padding: EdgeInsets.only(top: 8)),
+          arrays[index].isFav!
+              ? AnimatedOpacity(
+                  opacity: arrays[index].isFav!
+                      ? arrays[index].opacityOn
+                      : arrays[index].opacityOff,
+                  duration: const Duration(milliseconds: 800),
+                  child: PlayerBuilder.volume(
+                      player: arrays[index].player,
+                      builder: (context, volume) {
+                        return Shimmer.fromColors(
+                          baseColor: Colors.white,
+                          highlightColor: Colors.grey,
+                          child: Slider(
+                              value: volume,
+                              min: 0,
+                              max: 1,
+                              divisions: 50,
+                              onChanged: (v) {
+                                setState(() {
+                                  arrays[index].player.setVolume(v);
+                                });
+                              }),
+                        );
+                      }),
+                )
+              : Text(
+                  arrays[index].title!,
+                  style: const TextStyle(
+                      fontSize: 12.0,
+                      //    height: 2.5,
+                      color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+        ],
+      );
 
   @override
   bool get wantKeepAlive => true;

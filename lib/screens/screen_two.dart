@@ -95,64 +95,67 @@ class _CheckoutPageState extends State<CheckoutPage>
                   child: ListView.builder(
                       itemCount: cart.basketItems.length,
                       itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 8.0),
-                                        child: Image(
-                                          height: 50.0,
-                                          width: 50.0,
-                                          image: AssetImage(
-                                            cart.basketItems[index].picOff!,
+                        return Card(
+                          color: Colors.black26,
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 8.0),
+                                          child: Image(
+                                            height: 50.0,
+                                            width: 50.0,
+                                            image: AssetImage(
+                                              cart.basketItems[index].picOff!,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      PlayerBuilder.volume(
-                                          player: cart.basketItems[index].player,
-                                          builder: (context, _vol) {
-                                            return Slider(
-                                                activeColor: Colors.white,
-                                                value: _vol,
-                                                min: 0,
-                                                max: 1,
-                                                divisions: 50,
-                                                onChanged: (v) {
-                                                  setState(() {
-                                                    cart.basketItems[index].player
-                                                        .setVolume(v);
+                                        PlayerBuilder.volume(
+                                            player: cart.basketItems[index].player,
+                                            builder: (context, _vol) {
+                                              return Slider(
+                                                  activeColor: Colors.white,
+                                                  value: _vol,
+                                                  min: 0,
+                                                  max: 1,
+                                                  divisions: 50,
+                                                  onChanged: (v) {
+                                                    setState(() {
+                                                      cart.basketItems[index].player
+                                                          .setVolume(v);
+                                                    });
                                                   });
-                                                });
-                                          }),
-                                      IconButton(
-                                        icon: const Icon(
-                                          Icons.delete_forever,
-                                          color: Colors.white,
+                                            }),
+                                        IconButton(
+                                          icon: const Icon(
+                                            Icons.delete_forever,
+                                            color: Colors.white,
+                                          ),
+                                          iconSize: 48.0,
+                                          onPressed: () {
+                                            // Pause sounds with page one
+                                            cart.basketItems[index].player.pause();
+                                            cart.basketItems[index].isFav = false;
+                                            cart.remove(cart.basketItems[index]);
+                                            //    cart.remove2(cart.basketItems2[index]);
+                                            //    cart.remove2(cart.basketItems2[index]);
+                                            if (cart.count == 0) {
+                                              foregroundServiceStop();
+                                            }
+                                          },
                                         ),
-                                        iconSize: 48.0,
-                                        onPressed: () {
-                                          // Pause sounds with page one
-                                          cart.basketItems[index].player.pause();
-                                          cart.basketItems[index].isFav = false;
-                                          cart.remove(cart.basketItems[index]);
-                                          //    cart.remove2(cart.basketItems2[index]);
-                                          //    cart.remove2(cart.basketItems2[index]);
-                                          if (cart.count == 0) {
-                                            foregroundServiceStop();
-                                          }
-                                        },
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         );
                       }),
                 ),
