@@ -2,12 +2,12 @@ import 'package:sleep_sounds/fun/arrays_1_2.dart';
 import 'package:sleep_sounds/fun/toast.dart';
 import 'package:sleep_sounds/models/data_provider.dart';
 import 'package:sleep_sounds/fun/foreground_service.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:sleep_sounds/screens/TabView/test.dart';
 
 class TabViewTwo extends StatefulWidget {
   const TabViewTwo({
@@ -51,42 +51,7 @@ class _State extends State<TabViewTwo> {
             children: [
               TextButton(
                 onPressed: () async {
-                  if (cart.count <= 5) {
-                    /// Bool checking
-                    arrays2[index].isFav = !arrays2[index].isFav!;
-                    // Click_events Analytics
-                    if (arrays2[index].isFav!) {
-                      await _analytics.logEvent(
-                        name: arrays2[index].events!,
-                      );
-                    }
-                    /// Play or Stop sounds
-                    arrays2[index].isFav!
-                        ? arrays2[index].player.open(
-                        Audio(arrays2[index].sounds!),
-                        volume: 0.5,
-                        loopMode: LoopMode.single)
-                        : arrays2[index].player.pause();
-
-                    /// Add image to page two
-                    arrays2[index].isFav!
-                        ? cart.add(arrays2[index])
-                        : cart.remove(arrays2[index]);
-                  } else if (cart.count == 6) {
-                    cart.remove(arrays2[index]);
-                    arrays2[index].isFav = false;
-                    arrays2[index].player.pause();
-                    //Toast Text
-                    if (cart.count == 6) {
-                      toast();
-                    }
-                  }
-                  /// foregroundService START or STOP
-                  if (cart.count == 1) {
-                    foregroundService();
-                  } else if (cart.count == 0 && cart.count2 == 0) {
-                    foregroundServiceStop();
-                  }
+                  await addAllTwo(cart, index);
                 },
                 child: _gridBuldier(index),
               ),
@@ -96,6 +61,8 @@ class _State extends State<TabViewTwo> {
       );
     });
   }
+
+
 
   Widget _gridBuldier(int index) => Column(
                 children: [
@@ -144,4 +111,46 @@ class _State extends State<TabViewTwo> {
                 ],
               );
   }
-  
+
+
+ 
+
+  Future<void> newMethod(DataProvider cart, int index) async {
+        if (cart.count <= 5) {
+      /// Bool checking
+      arrays2[index].isFav = !arrays2[index].isFav!;
+      // Click_events Analytics
+      // if (arrays2[index].isFav!) {
+      //   await _analytics.logEvent(
+      //     name: arrays2[index].events!,
+      //   );
+      // }
+      // /// Play or Stop sounds
+      arrays2[index].isFav!
+          ? arrays2[index].player.open(
+          Audio(arrays2[index].sounds!),
+          volume: 0.5,
+          loopMode: LoopMode.single)
+          : arrays2[index].player.pause();
+    
+      /// Add image to page two
+      arrays2[index].isFav!
+          ? cart.add(arrays2[index])
+          : cart.remove(arrays2[index]);
+    } else if (cart.count == 6) {
+      cart.remove(arrays2[index]);
+      arrays2[index].isFav = false;
+      arrays2[index].player.pause();
+      //Toast Text
+      if (cart.count == 6) {
+        toast();
+      }
+    }
+    /// foregroundService START or STOP
+    if (cart.count == 1) {
+      foregroundService();
+    } else if (cart.count == 0 && cart.count2 == 0) {
+      foregroundServiceStop();
+    }
+  }
+

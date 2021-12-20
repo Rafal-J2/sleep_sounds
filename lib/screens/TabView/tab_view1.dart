@@ -24,7 +24,7 @@ class TabViewOne extends StatefulWidget {
 class _State extends State<TabViewOne> with AutomaticKeepAliveClientMixin {
   final PageStorageBucket bucket = PageStorageBucket();
   // Firebase Analytics
-  late FirebaseAnalytics _analytics;
+ // late FirebaseAnalytics _analytics;
 
   // _State(FirebaseAnalytics? analytics);
 
@@ -53,8 +53,8 @@ class _State extends State<TabViewOne> with AutomaticKeepAliveClientMixin {
               TextButton(
                 ///  padding: EdgeInsets.only(top: 10),
                 onPressed: () async {
-                  cart.addAll(index);
-                  firebaseAnalytics(index);
+                 cart.addAll(index);
+                 firebaseAnalytics(index);
                 },
                 child: _gridBuldier(index),
               ),
@@ -65,17 +65,7 @@ class _State extends State<TabViewOne> with AutomaticKeepAliveClientMixin {
     });
   }
 
-  Future<void> firebaseAnalytics(int index) async {
-    try {
-      if (arrays[index].isFav!) {
-        await _analytics.logEvent(
-          name: arrays[index].events!,
-        );
-      }
-    } catch (e) {
-      debugPrint("********error catch***********");
-    }
-  }
+
 
   Widget _gridBuldier(int index) => Column(
         children: [
@@ -127,3 +117,17 @@ class _State extends State<TabViewOne> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 }
+
+  late FirebaseAnalytics _analytics;
+
+  Future<void> firebaseAnalytics(int index) async {
+    try {
+      if (arrays[index].isFav!) {
+        await _analytics.logEvent(
+          name: arrays[index].events!,
+        );
+      }
+    } catch (e) {
+      debugPrint("********error catch***********");
+    }
+  }

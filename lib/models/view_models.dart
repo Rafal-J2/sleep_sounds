@@ -1,6 +1,6 @@
 class ViewModels {
-  final getStorage;
   bool? isFav;
+  bool? isDarkMode;
   String? events;
   String? picOff;
   String? picOn;
@@ -10,15 +10,15 @@ class ViewModels {
   String? log;
   String? text;
   String? image;
-  var gestureDetector;
+  final getStorage;
   final textStyle;
   final padding;
   final player;
-  bool? isDarkMode;
+  var gestureDetector;
   var checkThemeMode;
   var opacityOff;
   var opacityOn;
-  double? vol = 0.5;
+  double? vol;
   
 
   ViewModels(

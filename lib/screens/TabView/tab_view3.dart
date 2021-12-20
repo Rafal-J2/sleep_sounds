@@ -3,7 +3,6 @@ import 'package:sleep_sounds/fun/arrays_3_4.dart';
 import 'package:sleep_sounds/fun/toast.dart';
 import 'package:sleep_sounds/models/data_provider.dart';
 import 'package:sleep_sounds/fun/foreground_service.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +20,7 @@ class TabViewThree extends StatefulWidget {
 //  final FirebaseAnalyticsObserver observer;
 
   @override
-  _State createState() => _State(analytics);
+  _State createState() => _State();
 }
 
 class _State extends State<TabViewThree> {
@@ -29,7 +28,7 @@ class _State extends State<TabViewThree> {
   // Firebase Analytics
   late FirebaseAnalytics _analytics;
 
-  _State(FirebaseAnalytics? analytics);
+ // _State(FirebaseAnalytics? analytics);
 
   @override
   void initState() {

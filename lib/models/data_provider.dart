@@ -28,8 +28,6 @@ class DataProvider extends ChangeNotifier {
     if (count <= 5) {
       //Bool checking
       arrays[index].isFav = !arrays[index].isFav!;
- 
-  
       // Play or Stop sounds
       arrays[index].isFav!
           ? arrays[index].player.open(
@@ -43,8 +41,7 @@ class DataProvider extends ChangeNotifier {
 
       //   cart.addTest2(index);
       arrays[index].isFav! ? add(arrays[index]) : remove(arrays[index]);
-
-      //Add image to page two. If is isFav = true, add entire arrays.
+      //Added image to page two. If is isFav = true, add entire arrays.
       // Table number is depends on from the selected item
       // for example:  arrays[0].isFav = true.
       // If is true add to cart provider entire items  "picOff, isFav, sounds, vol, player"
