@@ -24,6 +24,7 @@ class DataProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+ 
   void addAll(index) async {
     if (count <= 5) {
       //Bool checking

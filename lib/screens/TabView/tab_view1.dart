@@ -54,7 +54,7 @@ class _State extends State<TabViewOne> with AutomaticKeepAliveClientMixin {
                 ///  padding: EdgeInsets.only(top: 10),
                 onPressed: () async {
                  cart.addAll(index);
-                 firebaseAnalytics(index);
+                 _firebaseAnalytics(index);
                 },
                 child: _gridBuldier(index),
               ),
@@ -64,8 +64,6 @@ class _State extends State<TabViewOne> with AutomaticKeepAliveClientMixin {
       );
     });
   }
-
-
 
   Widget _gridBuldier(int index) => Column(
         children: [
@@ -119,8 +117,7 @@ class _State extends State<TabViewOne> with AutomaticKeepAliveClientMixin {
 }
 
   late FirebaseAnalytics _analytics;
-
-  Future<void> firebaseAnalytics(int index) async {
+  Future<void> _firebaseAnalytics(int index) async {
     try {
       if (arrays[index].isFav!) {
         await _analytics.logEvent(
