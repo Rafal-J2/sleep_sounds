@@ -52,19 +52,8 @@ class _State extends State<ClockTimer> {
     _showDialogStat = GlobalKey();*/
   }
 
-  sendAnalyticsTrackSounds() {
-    _analytics.logEvent(
-      name: 'click_trackSounds',
-    );
-  }
 
-  sendAnalyticsTrackPiano() {
-    _analytics.logEvent(
-      name: 'click_trackPiano',
-    );
-  }
-
-  sendAnalyticsSetTime() {
+  _sendAnalyticsSetTime() {
     _analytics.logEvent(
       name: 'set_times',
     );
@@ -83,34 +72,34 @@ class _State extends State<ClockTimer> {
   int _seconds = 0;
   final int _hours = 0;
   bool  _isFav = false;
- // int _setTime = 0;
+  final int _setTime = 0;
 
 
  // TODO;
-/*  void switchThemeMode(){
-    switch(_setTime){
-      case 5 :
-        _resetRemainingTime5();
-        _startTimer();
-        toast3();
-        log('setClock(5)');
-        break;
-      case 10 :
-        setClock();
-        _resetRemainingTime10();
-        _startTimer();
-        toast3();
-        log('setClock(10)');
-        break;
-      case 15 :
-        setClock();
-        _resetRemainingTime15();
-        _startTimer();
-        toast3();
-        log('setClock(15)');
-    }}*/
+  // void switchThemeMode(){
+  //   switch(_setTime){
+  //     case 5 :
+  //       _resetRemainingTime5();
+  //       _startTimer();
+  //       toast3();
+  //       debugPrint('setClock(5)');
+  //       break;
+  //     case 10 :
+  //       setClock();
+  //       _resetRemainingTime10();
+  //       _startTimer();
+  //       toast3();
+  //      debugPrint('setClock(10)');
+  //       break;
+  //     case 15 :
+  //       setClock();
+  //       _resetRemainingTime15();
+  //       _startTimer();
+  //       toast3();
+  //       debugPrint('setClock(15)');
+  //   }}
 
-  resetRemainingTime5() {
+  _resetRemainingTime5() {
     _isFav = true;
     setState(()  {
       _saveSeconds();
@@ -281,7 +270,7 @@ class _State extends State<ClockTimer> {
                 child: ElevatedButton(
                   style: raiseButtonStyle,
                   onPressed: () {
-                    sendAnalyticsSetTime();
+                    _sendAnalyticsSetTime();
                   _showDialog();
                   },
                   child: const Text("Set Time"),
@@ -307,7 +296,7 @@ class _State extends State<ClockTimer> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    resetRemainingTime5();
+                    _resetRemainingTime5();
                     _startTimer();
                     toast3();
                     Navigator.of(context)

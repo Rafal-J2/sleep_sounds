@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:sleep_sounds/fun/arrays_1_2.dart';
 import 'package:sleep_sounds/fun/arrays_3_4.dart';
@@ -58,7 +57,7 @@ Future<void> addAllTwo(DataProvider cart, int index) async {
       arrays3[index].isFav = true;
     } else {
       arrays3[index].player.pause();
-      log('{arrays3[index].player.pause()} ${arrays3[index].player.pause()}');
+  //    log('{arrays3[index].player.pause()} ${arrays3[index].player.pause()}');
       cart.remove2(arrays3[index]);
       cart.remove(arrays3[index]);
       arrays3[index].isFav = false;

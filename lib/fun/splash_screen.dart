@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sleep_sounds/screens/navigators.dart';
 import 'package:lottie/lottie.dart';

@@ -1,6 +1,4 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sleep_sounds/fun/arrays_1_2.dart';
@@ -15,8 +13,6 @@ class DataProvider extends ChangeNotifier {
 
   final List<ViewModels> _items = [];
 
-  late final FirebaseAnalytics? analytics;
-  late FirebaseAnalytics _analytics;
 
   void add(ViewModels item) {
     _items.add(item);

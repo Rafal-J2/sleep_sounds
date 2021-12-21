@@ -42,7 +42,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   ThemeMode themeMode = ThemeMode.light;
-  late var _selectedPageIndex;
+  late var _selectedPageIndex = 0;
   late List<Widget> _pages;
   PageController? _pageController;
 
@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     _switchThemeMode();
-    _selectedPageIndex = 0;
+    _selectedPageIndex;
     _pages = [
       const GoodDream(),
       const CheckoutPage(),

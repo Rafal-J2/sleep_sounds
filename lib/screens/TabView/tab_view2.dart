@@ -7,7 +7,7 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:sleep_sounds/fun/funTabView.dart';
+import 'package:sleep_sounds/fun/fun_tab_view.dart';
 
 class TabViewTwo extends StatefulWidget {
   const TabViewTwo({

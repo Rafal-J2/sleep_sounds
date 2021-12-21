@@ -1,5 +1,5 @@
 import 'package:sleep_sounds/fun/arrays_3_4.dart';
-import 'package:sleep_sounds/fun/funTabView.dart';
+import 'package:sleep_sounds/fun/fun_tab_view.dart';
 import 'package:sleep_sounds/models/data_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';

@@ -51,15 +51,15 @@ class GoodDream extends StatefulWidget {
   final String? title;
 
   @override
-  _State createState() => _State(observer);
+  _State createState() => _State();
 }
 
 class _State extends State<GoodDream>   {
   _State(
       // this.analytics,
-      this.observer,
+   //   this.observer,
       );
-  final FirebaseAnalyticsObserver? observer;
+//  final FirebaseAnalyticsObserver? observer;
   final ams = AdMobService();
 
 
@@ -145,9 +145,8 @@ class _State extends State<GoodDream>   {
             onWillPop: () => onBackPressed(),
             child: Scaffold(
               appBar: PreferredSize(
-                preferredSize: Size.fromHeight(40.0),
+                preferredSize: const Size.fromHeight(40.0),
                 child: AppBar(
-                  backwardsCompatibility: false,
                   systemOverlayStyle: const SystemUiOverlayStyle(statusBarColor: Colors.black),
                   flexibleSpace: const SizedBox(
                     child: TabBar(
