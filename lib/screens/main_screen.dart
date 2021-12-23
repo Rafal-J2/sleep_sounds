@@ -72,18 +72,7 @@ class _State extends State<GoodDream>   {
   final dataStorage = GetStorage();
   late int intCheck;
 
-  _checkStorage() {
-    if(arrays4[0].checkThemeMode == ThemeMode.light) {
-      intCheck = 0;
-      dataStorage.write('intCheck', intCheck);
-    } else if (arrays4[0].checkThemeMode == ThemeMode.dark){
-      intCheck = 1;
-      dataStorage.write('intCheck', intCheck);
-    } else {
-      intCheck = 2;
-      dataStorage.write('intCheck', intCheck);
-    }
-  }
+  
 
   void _switchThemeMode(){
     switch(dataStorage.read('intCheck')){

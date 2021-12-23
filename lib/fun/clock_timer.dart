@@ -1,5 +1,3 @@
-// ignore_for_file: no_logic_in_create_state
-
 import 'dart:async';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -33,18 +31,17 @@ class ClockTimer extends StatefulWidget {
 // final FirebaseAnalyticsObserver observer;
 
   @override
-  _State createState() => _State(analytics);
+  _State createState() => _State();
 }
 
 class _State extends State<ClockTimer> {
   late FirebaseAnalytics _analytics;
-  _State(FirebaseAnalytics? analytics);
+ 
 
   @override
   void initState() {
     super.initState();
     _analytics = FirebaseAnalytics();
-   // _loadCounter();
     _loadSeconds();
 
 /*   Test Crash
@@ -72,32 +69,6 @@ class _State extends State<ClockTimer> {
   int _seconds = 0;
   final int _hours = 0;
   bool  _isFav = false;
-  final int _setTime = 0;
-
-
- // TODO;
-  // void switchThemeMode(){
-  //   switch(_setTime){
-  //     case 5 :
-  //       _resetRemainingTime5();
-  //       _startTimer();
-  //       toast3();
-  //       debugPrint('setClock(5)');
-  //       break;
-  //     case 10 :
-  //       setClock();
-  //       _resetRemainingTime10();
-  //       _startTimer();
-  //       toast3();
-  //      debugPrint('setClock(10)');
-  //       break;
-  //     case 15 :
-  //       setClock();
-  //       _resetRemainingTime15();
-  //       _startTimer();
-  //       toast3();
-  //       debugPrint('setClock(15)');
-  //   }}
 
   _resetRemainingTime5() {
     _isFav = true;

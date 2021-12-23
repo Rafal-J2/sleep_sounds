@@ -3,23 +3,18 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:provider/provider.dart';
 import 'package:sleep_sounds/fun/arrays_3_4.dart';
 import 'package:sleep_sounds/fun/mode_switch.dart';
-import 'package:sleep_sounds/models/data_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:sleep_sounds/fun/show_dialogs.dart';
-
-/*class Controller extends GetxController {
-  final dataStorage = GetStorage();
- //  get isThemeMode => dataStorage.read('key');
-}*/
+import 'package:sleep_sounds/models/data_provider.dart';
 
 class Menu extends StatefulWidget {
   const Menu({
     Key? key,
-//    this.setDarkMode,
+
   }) : super(key: key);
-//  final ValueChanged<bool>? setDarkMode;
+
 
   @override
   _MenuState createState() => _MenuState();
@@ -34,11 +29,8 @@ class _MenuState extends State<Menu> with AutomaticKeepAliveClientMixin {
     super.initState();
     dataStorage.read('intCheck');
     log("what is inCheck in initState: $intCheck");
-   // dataStorage.read('intCheck');
     log("dataStorage.read: ${dataStorage.read('intCheck')}");
     _switchThemeMode();
-   // checkStorage();
-
   }
 
   void _switchThemeMode(){
@@ -148,7 +140,7 @@ class _MenuState extends State<Menu> with AutomaticKeepAliveClientMixin {
               ),
               Column(
                 children: [
-                  SizedBox(
+                  Container(
                     height: 200,
                     child: HomePage(
                       // We pass it the current theme mode.
@@ -161,17 +153,6 @@ class _MenuState extends State<Menu> with AutomaticKeepAliveClientMixin {
                         setState(() {
                          themeMode = mode;
                          _checkStorage();
-                    //    switchThemeMode();
-                      //    dataStorage.write('intCheck', intCheck);
-                  /*      if(themeMode == ThemeMode.light) {
-                           intCheck = 0;
-                         } else if (themeMode == ThemeMode.dark){
-                           intCheck = 1;
-                         } else {intCheck = 2;}
-                          log("intCheck $intCheck");
-                         log("themeMode $themeMode");*/
-                      //   dataStorage.write('key', mode);
-                  //       dataStorage.write('key2', _counter);
                      //   arrays4[0].themeMode = mode;
                           arrays4[0].checkThemeMode = mode;
                           cart.add3(arrays4[0]);
