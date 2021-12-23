@@ -13,20 +13,15 @@ class TabViewTwo extends StatefulWidget {
   const TabViewTwo({
     Key? key,
     this.analytics,
-    //   this.observer,
   }) : super(key: key);
 
-  // Firebase Analytics
   final FirebaseAnalytics? analytics;
-//  final FirebaseAnalyticsObserver observer;
 
   @override
   _State createState() => _State();
 }
 
 class _State extends State<TabViewTwo> {
-  // Firebase Analytics
-  // late FirebaseAnalytics _analytics;
 
   @override
   void initState() {
@@ -128,7 +123,6 @@ Future<void> newMethod(DataProvider cart, int index) async {
     cart.remove(arrays2[index]);
     arrays2[index].isFav = false;
     arrays2[index].player.pause();
-    //Toast Text
     if (cart.count == 6) {
       toast();
     }

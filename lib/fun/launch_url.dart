@@ -46,16 +46,4 @@ import 'package:url_launcher/url_launcher.dart';
     }
   }
 
-  void switch2(){
-    String url = 'A';
-    switch(url) {
-      case 'A':
-        debugPrint('test');
-        break;
-
-      case 'B' :
-        debugPrint('test2');
-
-    }
-  }
-
+  

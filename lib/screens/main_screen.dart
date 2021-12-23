@@ -10,13 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-
 import 'TabView/tab_view4.dart';
 import 'TabView/tab_view1.dart';
 import 'TabView/tab_view2.dart';
 import 'TabView/tab_view3.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
-
 
 void main() async {
   runApp(ChangeNotifierProvider(
@@ -42,8 +40,7 @@ class GoodDream extends StatefulWidget {
   final ThemeMode? themeMode;
   final ValueChanged<ThemeMode>? onThemeModeChanged;
 
-// Firebase Analytics
-  //final FirebaseAnalytics analytics;
+
   final FirebaseAnalyticsObserver? observer;
   // Dialogs global
   final Widget? confirmWidget;
@@ -55,13 +52,7 @@ class GoodDream extends StatefulWidget {
 }
 
 class _State extends State<GoodDream>   {
-  _State(
-      // this.analytics,
-   //   this.observer,
-      );
-//  final FirebaseAnalyticsObserver? observer;
   final ams = AdMobService();
-
 
   @override
   void initState() {
@@ -71,8 +62,6 @@ class _State extends State<GoodDream>   {
 
   final dataStorage = GetStorage();
   late int intCheck;
-
-  
 
   void _switchThemeMode(){
     switch(dataStorage.read('intCheck')){

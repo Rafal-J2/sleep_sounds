@@ -1,4 +1,3 @@
-
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -10,7 +9,6 @@ import 'package:sleep_sounds/screens/screen_two.dart';
 import 'package:sleep_sounds/services/admob_service.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-
 import 'menu.dart';
 
 
@@ -113,10 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
         darkTheme: FlexColorScheme.dark(
           scheme: FlexScheme.red,
           onPrimary: Colors.white,
-          //  scaffoldBackground: Colors.black87,
         ).toTheme,
-        //  themeMode: arrays4[0].checkThemeMode,
-      //  themeMode: cart.basketItems3.isEmpty ? ThemeMode.system : cart.basketItems3[0].checkThemeMode,
         themeMode: cart.basketItems3.isEmpty ? themeMode : arrays4[0].checkThemeMode,
         debugShowCheckedModeBanner: false,
         home: Scaffold(
@@ -129,7 +124,6 @@ class _MyHomePageState extends State<MyHomePage> {
             unselectedItemColor: Colors.white,
             selectedItemColor: Colors.red,
             selectedIconTheme: const IconThemeData(color: Colors.red),
-            //   backgroundColor: Color(0xFF20124d),
             items: [
               const BottomNavigationBarItem(
                 icon: Icon(Icons.home),
@@ -140,19 +134,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     ? const Icon(Icons.surround_sound)
                     : Lottie.asset('assets/lottieFiles/sounds_waves.json'),
                 label: 'Active Sounds - ${cart.count.toString()}',
-                /*
-                icon: Icon(Icons.surround_sound,
-                    color: cart.count <= 0
-                        ? null
-                        : Colors.white),*/
               ),
               const BottomNavigationBarItem(
                 icon: Icon(Icons.menu),
                 label: 'Settings',
               ),
             ],
-            //   selectedItemColor: Colors.white,
-            //   unselectedItemColor: Colors.blue,
             showSelectedLabels: true,
             currentIndex: _selectedPageIndex,
             onTap: (selectedPageIndex) {

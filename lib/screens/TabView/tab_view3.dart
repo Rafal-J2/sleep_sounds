@@ -10,12 +10,9 @@ class TabViewThree extends StatefulWidget {
   const TabViewThree({
     Key? key,
     this.analytics,
-    //   this.observer,
   }) : super(key: key);
 
-  // Firebase Analytics
   final FirebaseAnalytics? analytics;
-//  final FirebaseAnalyticsObserver observer;
 
   @override
   _State createState() => _State();
@@ -23,10 +20,6 @@ class TabViewThree extends StatefulWidget {
 
 class _State extends State<TabViewThree> {
   ThemeMode themeMode = ThemeMode.light;
-  // Firebase Analytics
-//  late FirebaseAnalytics _analytics;
-
-  // _State(FirebaseAnalytics? analytics);
 
   @override
   void initState() {

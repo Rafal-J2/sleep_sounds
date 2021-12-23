@@ -1,7 +1,6 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 
-
 class HomePage extends StatelessWidget {
   const HomePage({
     Key? key,
@@ -20,7 +19,6 @@ class HomePage extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(20.0),
           height: 200,
-          //width: 100,
           child: FlexThemeModeSwitch(
             height: 20,
             width: 20,

@@ -30,17 +30,14 @@ class _CheckoutPageState extends State<CheckoutPage>
   void _switchThemeMode(){
     switch(dataStorage.read('intCheck')){
       case 0 :
-      //  arrays4[0].checkThemeMode = ThemeMode.light;
         themeMode = ThemeMode.light;
         debugPrint('switchThemeMode - ThemeMode.light*');
         break;
       case 1 :
-      //   arrays4[0].checkThemeMode = ThemeMode.dark;
         themeMode = ThemeMode.dark;
         debugPrint('ThemeMode.dark*');
         break;
       case 2 :
-      //  arrays4[0].checkThemeMode = ThemeMode.system;
         themeMode = ThemeMode.system;
         debugPrint('ThemeMode.system*');
     }
@@ -91,7 +88,6 @@ class _CheckoutPageState extends State<CheckoutPage>
                 SizedBox(
                   // width: 50.0,
                   height: screenSize.height,
-                  //   color: Colors.black12,
                   child: ListView.builder(
                       itemCount: cart.basketItems.length,
                       itemBuilder: (context, index) {
@@ -142,8 +138,6 @@ class _CheckoutPageState extends State<CheckoutPage>
                                             cart.basketItems[index].player.pause();
                                             cart.basketItems[index].isFav = false;
                                             cart.remove(cart.basketItems[index]);
-                                            //    cart.remove2(cart.basketItems2[index]);
-                                            //    cart.remove2(cart.basketItems2[index]);
                                             if (cart.count == 0) {
                                               foregroundServiceStop();
                                             }
@@ -171,5 +165,3 @@ class _CheckoutPageState extends State<CheckoutPage>
   @override
   bool get wantKeepAlive => true;
 }
-
-//Center(child: cart.count == 0 ? Lottie.asset('assets/lottieFiles/night_and_day.json') : null)

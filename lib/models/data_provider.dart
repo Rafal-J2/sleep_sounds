@@ -10,17 +10,13 @@ class DataProvider extends ChangeNotifier {
   final Map<int, int> _cart = {};
 
   Map<int, int> get cart => _cart;
-
   final List<ViewModels> _items = [];
-
 
   void add(ViewModels item) {
     _items.add(item);
-
     notifyListeners();
   }
 
- 
   void addAll(index) async {
     if (count <= 5) {
       //Bool checking
@@ -35,8 +31,6 @@ class DataProvider extends ChangeNotifier {
               //  showNotification: true,
               loopMode: LoopMode.single)
           : arrays[index].player.pause();
-
-      //   cart.addTest2(index);
       arrays[index].isFav! ? add(arrays[index]) : remove(arrays[index]);
       //Added image to page two. If is isFav = true, add entire arrays.
       // Table number is depends on from the selected item
@@ -47,8 +41,6 @@ class DataProvider extends ChangeNotifier {
       cart.remove(arrays[index]);
       arrays[index].isFav = false;
       arrays[index].player.pause();
-
-      //Toast Text
       if (count == 6) {
         toast();
       }

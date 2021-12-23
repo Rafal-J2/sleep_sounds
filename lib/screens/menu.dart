@@ -11,10 +11,7 @@ import 'package:sleep_sounds/models/data_provider.dart';
 
 class Menu extends StatefulWidget {
   const Menu({
-    Key? key,
-
-  }) : super(key: key);
-
+    Key? key,}) : super(key: key);
 
   @override
   _MenuState createState() => _MenuState();
@@ -36,17 +33,14 @@ class _MenuState extends State<Menu> with AutomaticKeepAliveClientMixin {
   void _switchThemeMode(){
     switch(dataStorage.read('intCheck')){
       case 0 :
-      //  arrays4[0].checkThemeMode = ThemeMode.light;
         themeMode = ThemeMode.light;
         debugPrint('switchThemeMode - ThemeMode.light*');
         break;
       case 1 :
-     //   arrays4[0].checkThemeMode = ThemeMode.dark;
       themeMode = ThemeMode.dark;
         debugPrint('ThemeMode.dark*');
         break;
       case 2 :
-      //  arrays4[0].checkThemeMode = ThemeMode.system;
        themeMode = ThemeMode.system;
         debugPrint('ThemeMode.system*');
     }
@@ -64,13 +58,10 @@ class _MenuState extends State<Menu> with AutomaticKeepAliveClientMixin {
 
     int intCheck = 2;
   late ThemeMode themeMode;
-// ThemeMode themeMode = ThemeMode.system;
 
   @override
   Widget build(BuildContext context) {
-//    final controller = Get.put(Controller());
     super.build(context);
-    // const FlexScheme usedFlexScheme = FlexScheme.mandyRed;
     return Consumer<DataProvider>(builder: (
         context,
         cart,
@@ -78,9 +69,6 @@ class _MenuState extends State<Menu> with AutomaticKeepAliveClientMixin {
         ) {
       return ListView(
         children: <Widget>[
-          /*      DrawerHeader(
-              child: Text('Menu', style: TextStyle(color: Colors.white)),
-            ),*/
           Column(
             children: [
               ListTile(
@@ -144,20 +132,15 @@ class _MenuState extends State<Menu> with AutomaticKeepAliveClientMixin {
                     height: 200,
                     child: HomePage(
                       // We pass it the current theme mode.
-             //    themeMode: themeMode,
-                      /// The selected icon
-                      // themeMode: arrays4[0].checkThemeMode,
                        themeMode:  themeMode,
                       // On the home page we can toggle theme mode between light and dark.
                       onThemeModeChanged: (ThemeMode mode) {
                         setState(() {
                          themeMode = mode;
                          _checkStorage();
-                     //   arrays4[0].themeMode = mode;
                           arrays4[0].checkThemeMode = mode;
                           cart.add3(arrays4[0]);
                         });
-
                         log("acart.add3(arrays4[0]");
                       },
                       flexSchemeData: FlexColor.schemes[FlexScheme.red],

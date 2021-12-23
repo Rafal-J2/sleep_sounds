@@ -9,7 +9,6 @@ import 'package:sleep_sounds/models/data_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 void main() async {
   runApp(ChangeNotifierProvider(
     create: (context) => DataProvider(),
@@ -28,7 +27,6 @@ class ClockTimer extends StatefulWidget {
   }) : super(key: key);
 
   final FirebaseAnalytics? analytics;
-// final FirebaseAnalyticsObserver observer;
 
   @override
   _State createState() => _State();
@@ -36,19 +34,13 @@ class ClockTimer extends StatefulWidget {
 
 class _State extends State<ClockTimer> {
   late FirebaseAnalytics _analytics;
- 
 
   @override
   void initState() {
     super.initState();
     _analytics = FirebaseAnalytics();
     _loadSeconds();
-
-/*   Test Crash
-    FirebaseCrashlytics.instance.crash();
-    _showDialogStat = GlobalKey();*/
   }
-
 
   _sendAnalyticsSetTime() {
     _analytics.logEvent(
@@ -57,8 +49,7 @@ class _State extends State<ClockTimer> {
   }
 
   setClock() {
-    Navigator.of(context)
-        .pop(Duration(hours: _hours, minutes: _minutes));
+    Navigator.of(context).pop(Duration(hours: _hours, minutes: _minutes));
   }
 
   Timer? timer;
@@ -68,11 +59,11 @@ class _State extends State<ClockTimer> {
   int _minutes = 0;
   int _seconds = 0;
   final int _hours = 0;
-  bool  _isFav = false;
+  bool _isFav = false;
 
   _resetRemainingTime5() {
     _isFav = true;
-    setState(()  {
+    setState(() {
       _saveSeconds();
       _minutes = 5;
     });
@@ -83,7 +74,6 @@ class _State extends State<ClockTimer> {
     setState(() {
       _saveSeconds();
       _minutes = 10;
-
     });
   }
 
@@ -138,7 +128,6 @@ class _State extends State<ClockTimer> {
   _startTimer() {
     _seconds = _hours * 3600 + _minutes * 60;
     _cancelTimer();
-    // _resetRemainingTime();
     timer = Timer.periodic(const Duration(seconds: 1), (_) {
       _tick();
     });
@@ -156,11 +145,11 @@ class _State extends State<ClockTimer> {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       _seconds = (prefs.getInt('counter') ?? 3600);
-   //   prefs.setInt('counter', _counter);
+      //   prefs.setInt('counter', _counter);
     });
   }
 
-  _renderClock()  {
+  _renderClock() {
     final duration = Duration(seconds: _seconds);
     final hours = _twoDigits(duration.inHours.remainder(60));
     final minutes = _twoDigits(duration.inMinutes.remainder(60));
@@ -182,11 +171,10 @@ class _State extends State<ClockTimer> {
     });
   }
 
- 
   _tick() {
     setState(() {
       _seconds -= 1;
-    //  _saveSeconds();
+      //  _saveSeconds();
       if (_seconds <= 0) {
         _cancelTimer();
         SystemChannels.platform.invokeMethod('SystemNavigator.pop');
@@ -204,13 +192,11 @@ class _State extends State<ClockTimer> {
 
   @override
   Widget build(BuildContext context) {
-    //  final Size screenSize = MediaQuery.of(context).size;
-
     return Consumer<DataProvider>(builder: (
-        context,
-        cart,
-        child,
-        ) {
+      context,
+      cart,
+      child,
+    ) {
       return Column(
         children: [
           Row(
@@ -218,31 +204,32 @@ class _State extends State<ClockTimer> {
             children: [
               Padding(
                 padding:
-                const EdgeInsets.only(left: 30.0, right: 30.0, top: 15),
+                    const EdgeInsets.only(left: 30.0, right: 30.0, top: 15),
                 child: ElevatedButton(
                   style: raiseButtonStyle,
                   onPressed: () {
                     _isFav = !_isFav;
-                    if(_isFav) {
+                    if (_isFav) {
                       _loadSeconds();
                       _startTimer();
                     } else {
                       _cancelTimer();
                       _loadSeconds();
                     }
-
                   },
-                  child: _isFav ? const Text("Stop Time") : const Text('Start Timer'),
+                  child: _isFav
+                      ? const Text("Stop Time")
+                      : const Text('Start Timer'),
                 ),
               ),
               Padding(
                 padding:
-                const EdgeInsets.only(left: 30.0, right: 30.0, top: 15),
+                    const EdgeInsets.only(left: 30.0, right: 30.0, top: 15),
                 child: ElevatedButton(
                   style: raiseButtonStyle,
                   onPressed: () {
                     _sendAnalyticsSetTime();
-                  _showDialog();
+                    _showDialog();
                   },
                   child: const Text("Set Time"),
                 ),
@@ -336,7 +323,6 @@ class _State extends State<ClockTimer> {
                   child: const Text('2 HOURS'),
                 ),
               ),
-
               Center(
                 child: ElevatedButton(
                   onPressed: () {
@@ -389,6 +375,3 @@ class _State extends State<ClockTimer> {
         });
   }
 }
-
-
-

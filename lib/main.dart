@@ -29,8 +29,6 @@ const MyApp({Key? key}) : super(key: key);
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     var materialApp = const MaterialApp(
       debugShowCheckedModeBanner: false,
-  //    navigatorObservers: <NavigatorObserver>[observer],
-    //   home: Navigators(),
     home: SplashScreen(),
     );
     return ChangeNotifierProvider(

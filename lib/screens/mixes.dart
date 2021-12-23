@@ -72,7 +72,6 @@ class Mix extends StatelessWidget {
                   color: Colors.white
                 ),
                 ),
-
               ],
             );
           });

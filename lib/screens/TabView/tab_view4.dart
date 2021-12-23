@@ -14,9 +14,7 @@ class TabViewFour extends StatefulWidget {
     //   this.observer,
   }) : super(key: key);
 
-  // Firebase Analytics
   final FirebaseAnalytics? analytics;
-//  final FirebaseAnalyticsObserver observer;
 
   @override
   _State createState() => _State();
@@ -24,10 +22,6 @@ class TabViewFour extends StatefulWidget {
 
 class _State extends State<TabViewFour> with AutomaticKeepAliveClientMixin {
   final PageStorageBucket bucket = PageStorageBucket();
-  // Firebase Analytics
- // late FirebaseAnalytics _analytics;
-
- // _State(FirebaseAnalytics? analytics);
 
   @override
   void initState() {
@@ -49,11 +43,9 @@ class _State extends State<TabViewFour> with AutomaticKeepAliveClientMixin {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             childAspectRatio: 1.0, crossAxisCount: 3),
         itemBuilder: (context, index) {
-          //   final shopList = snapshot.data["shop items"];
           return Column(
             children: [
               TextButton(
-                ///  padding: EdgeInsets.only(top: 10),
                 onPressed: () async {
                  addAllFour(cart, index);
                   _firebaseAnalytics(index);
